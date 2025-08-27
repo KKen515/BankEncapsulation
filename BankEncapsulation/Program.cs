@@ -5,45 +5,54 @@
         
         static void Main(string[] args)
         {
-            bool bankLoop = true;
-            Console.WriteLine("Welcome to the Bank Encapsulation Service!");
-            
-            
-            while (bankLoop)
-            {
-                BankAccount ba = new BankAccount();
+            bool loop;
+            var account = new BankAccount();
 
-                Console.WriteLine("Would you like to deposit anything? Y or N");
-                char userInput = Console.ReadKey().KeyChar;
+          Console.WriteLine("Welcome to the Bank Encapsulation App!");
+          Console.WriteLine("-----------------------------------------");
 
-                if (userInput == 'y' || userInput == 'Y')
-                {
-                    Console.WriteLine($"\n");
-                    Console.WriteLine("How much do you want to deposit?");
+          while (loop = true)
+          {
+              Console.WriteLine("\n Please select an option:");
+              Console.WriteLine("1. Deposit Money");
+              Console.WriteLine("2. Get Balance");
+              Console.WriteLine("3. Exit the Application");
 
-                    double amountToDeposit = double.Parse(Console.ReadLine());
-                    ba.Deposit(amountToDeposit);
+              int choice;
+              if (!int.TryParse(Console.ReadLine(), out choice))
+              {
+                  Console.WriteLine("Invalid choice. Please enter a valid input.");
+                  continue;
+              }
 
-                    double userBalance = ba.GetBalance();
+              switch (choice)
+              {
+                  case 1:
+                      Console.WriteLine("Enter the amount you want to deposit: ");
 
-                    Console.WriteLine($"Your current balance is: {userBalance,0:c}.");
+                      double amount;
 
-                }
-                else if (userInput == 'n' || userInput == 'N')
-                {
-                    Console.WriteLine($"\n");
-                    Console.WriteLine("Thank you for using the Bank Encapsulation Service!");
-                    bankLoop = false;
-                }
-                else
-                {
-                    Console.WriteLine($"\n");
-                    Console.WriteLine("Invalid input, try again.");
-                }
-
-                
-
-            }
+                      if (!double.TryParse(Console.ReadLine(), out amount))
+                      {
+                          Console.WriteLine("Invalid choice. Please enter a valid input.");
+                          continue;
+                      }
+                      account.Deposit(amount);
+                      Console.WriteLine("Deposit successfully!");
+                      break;
+                  
+                  case 2:
+                      Console.WriteLine($"Current Balance: ${account.GetBalance()}");
+                      break;
+                  case 3:
+                      Console.WriteLine("Thank you for using the Bank Encapsulation App!");
+                      return;
+                  default:
+                      Console.WriteLine("Invalid input. Please enter a valid input.");
+                      break;
+              }
+              
+          }
         }
     }
 }
