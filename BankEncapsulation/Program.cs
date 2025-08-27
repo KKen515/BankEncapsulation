@@ -38,7 +38,7 @@
                           continue;
                       }
                       account.Deposit(amount);
-                      Console.WriteLine("Deposit successfully!");
+                      Console.WriteLine("Deposit successful!");
                       break;
                   
                   case 2:
