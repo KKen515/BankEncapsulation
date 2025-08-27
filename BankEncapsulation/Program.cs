@@ -5,13 +5,12 @@
         
         static void Main(string[] args)
         {
-            bool loop;
             var account = new BankAccount();
 
           Console.WriteLine("Welcome to the Bank Encapsulation App!");
           Console.WriteLine("-----------------------------------------");
 
-          while (loop = true)
+          while (true)
           {
               Console.WriteLine("\n Please select an option:");
               Console.WriteLine("1. Deposit Money");
